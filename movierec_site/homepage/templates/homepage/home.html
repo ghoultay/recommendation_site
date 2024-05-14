@@ -1,0 +1,55 @@
+{% extends 'homepage/base.html' %}
+
+{% block title %}
+Home - MovieRec
+{% endblock %}
+
+
+
+
+{% block content %} 
+<!-- Main Content -->
+<div class="container mt-4">  
+    {% if not form_submitted %}
+    <div class="jumbotron bg-dark text-light">
+        <h1 class="display-4">Welcome to Movie Finder!</h1>
+        <p class="lead">Discover new movies and get personalized recommendations based on your preferences.</p>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <!-- Film Suggestion Form -->
+            <form method="GET", action="{% url 'index' %}">
+                
+                <label for="film_suggestion">Write a film you like:</label>
+                <div class="form-group d-flex " id="autocomplete">   
+                                 
+                    <input type="text" class="autocomplete-input" id="film_suggestion" name="film_suggestion" required>
+                    <ul id="ull" class="autocomplete-result-list" style="color:black;"></ul>
+                    <button id="rec-btn" type="submit" name="find" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        {% if form_submitted %}
+        {% include "homepage/recomendations.html" with movie_card=movie_card %}
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    var name; // global variable that keeps the name
+    new Autocomplete('#autocomplete', {
+        search: input => {
+            const url = `/search/?name=${input}`;
+            return new Promise(resolve => {
+                fetch(url).then(response => response.json()).then(data => {
+                    resolve(data.name);
+                })
+            })
+        },
+    })
+</script>
+
+{% endblock %} 

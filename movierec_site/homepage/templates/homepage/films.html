@@ -1,0 +1,86 @@
+{% extends 'homepage/base.html' %}
+
+{% block title %}
+Films
+{% endblock %}
+
+
+{% block content %}
+<h1 class="mt-5 mb-4">List of Movies</h1>  
+    <div class="form-group d-flex " id="autocomplete">
+        <input type="text" class="autocomplete-input" style="width: 100%;" required>    
+        <ul id="ull" class="autocomplete-result-list" style="color:black;"></ul>
+    </div>
+<div class="row">
+    {% for movie in movies %}
+    <div class="col-md-4 mb-4">
+        <div class="card">        
+            <div class="card-body bg-dark text-light ">
+                <a href="{% url 'film_detail' movie.id %}" class="text-light text-decoration-none">
+                    <h5 class="card-title">{{ movie.title }}</h5>
+                </a>
+                <p class="card-text">{{ movie.director }}</p>
+                <!-- Add more movie details here -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% include "homepage/pagination.html" with page=movies %}
+
+<script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    var name; // global variable that keeps the name
+    new Autocomplete('#autocomplete', {
+        search: input => {
+            const url = `/search/?name=${input}`;
+            return new Promise(resolve => {
+                fetch(url).then(response => response.json()).then(data => {
+                    resolve(data.name);
+                })
+            })
+        },
+
+        onSubmit: result => {
+            name = result; //pass clicked result to global
+        }
+    })
+    $('#ull').click(function (e) {
+        $.ajax({
+            url: '',
+            type: 'GET',
+            data: {
+                valname: name,
+            },
+            success: function (response) {
+                window.location = response.id;
+            }
+        })
+
+    })
+    $('#autocomplete').on('keypress', '.autocomplete-input', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent default form submission behavior
+        
+        // Get the value of the input field
+        var name = $(this).val();
+        
+        // Send AJAX request
+        $.ajax({
+            url: '',
+            type: 'GET',
+            data: {
+                valname: name,
+            },
+            success: function (response) {
+                window.location = response.id;
+            },
+            error: function () {
+                console.error('Error occurred while processing the request.');
+            }
+        });
+    }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,68 @@
+/* Add your custom CSS styles here */
+
+        /* Dark-blue background */
+        body {
+            background-color: #1f2833; /* Dark blue */
+            color: #ced4da; /* Light gray */
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #0b132b; /* Dark blue */
+            color: #ced4da; /* Light gray */
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #ced4da !important; /* Light gray */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #ced4da; /* Light gray */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fff !important; /* White on hover */
+        }
+
+        .navbar-toggler {
+            border-color: #ced4da; /* Light gray */
+        }
+
+        .btn:focus,
+        .btn:active {
+        outline: none !important; /* Remove focus outline */
+        box-shadow: none !important; /* Remove box shadow */
+        }
+
+        .checked {
+            /* color: orange; */
+            color: orange;
+          }
+
+        .rate-btn{
+            background-color: inherit !important;
+            border: 0 !important;
+        }
+
+        .pagination {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .page-number {
+            background-color: #007bff;
+            color: #fff;
+        }
+        
+        .autocomplete-result-list {
+            position: absolute; /* Позиционируем список абсолютно относительно его ближайшего позиционированного родителя */
+            top: calc(100% + 5px); /* Располагаем список под строкой запроса с небольшим отступом */
+            left: 0; /* Располагаем список слева от строки запроса */
+            z-index: 1000; /* Устанавливаем высокий z-index, чтобы список был поверх остального содержимого */
+            background-color: white; /* Задаем цвет фона списка */
+            border: 1px solid black; /* Добавляем рамку вокруг списка */
+            padding: 5px; /* Добавляем внутренний отступ для содержимого списка */
+            list-style: none; /* Удаляем маркеры списка */
+        }

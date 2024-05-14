@@ -1,0 +1,22 @@
+# .dockerignore
+
+# Ignore virtual environment directory
+movrecenv/
+
+# Ignore compiled Python files
+**/*.pyc
+**/__pycache__
+
+# Ignore media files if any
+**/media/
+
+# Ignore unnecessary csv files
+movierec_site/homepage/dataset/my_ratings.csv
+
+# Ignore unnecessary .py files
+movierec_site/movie_prefill.py
+
+# Exclude development files and directories
+*.ipynb
+.idea/
+.vscode/

@@ -1,0 +1,24 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore environment and virtual environment files
+movrecenv
+
+# Ignore IDE or editor files
+.idea/
+.vscode/
+
+# Ignore database files
+*.sqlite3
+
+# Ignore static files collected by Django
+/staticfiles/
+
+# Ignore log files
+*.log
+
+# Ignore secret keys and sensitive information
+*.secret
+
+# Ignore any other files or directories that shouldn't be version controlled

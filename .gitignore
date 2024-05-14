@@ -5,6 +5,10 @@ __pycache__/
 # Ignore environment and virtual environment files
 movrecenv
 
+# Ignore csv files
+movierec_site/homepage/dataset/my_movies.csv
+movierec_site/homepage/dataset/my_ratings.csv
+
 # Ignore IDE or editor files
 .idea/
 .vscode/
@@ -17,7 +21,6 @@ movrecenv
 
 # Ignore log files
 *.log
-*.csv
 
 # Ignore secret keys and sensitive information
 *.secret

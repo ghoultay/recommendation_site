@@ -17,8 +17,7 @@ movrecenv
 
 # Ignore log files
 *.log
+*.csv
 
 # Ignore secret keys and sensitive information
 *.secret
-
-# Ignore any other files or directories that shouldn't be version controlled

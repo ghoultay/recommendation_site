@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  my_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SECRET_KEY=/run/secrets/my_django_secret_key
+    volumes:
+      - .:/app
+    ports:
+      - "8008:8008"
+secrets:
+  my_django_secret_key:
+    external: true

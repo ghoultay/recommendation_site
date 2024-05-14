@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="pagination justify-content-center mt-4 mr-5">
+    <span class="step-links ml-4">
+        {% if page.has_previous %}
+            <a href="?page=1" class="btn btn-outline-primary">&laquo; First</a>
+            <a href="?page={{ page.previous_page_number }}" class="btn btn-outline-primary">Previous</a>
+        {% endif %}
+        {% if page.paginator.num_pages > 7 %}
+            {% for num in page.paginator.page_range %}
+                {% if num == page.number %}
+                    <span class="page-number btn btn-primary">{{ num }}</span>
+                {% elif num > page.number|add:'-4' and num < page.number|add:'4' %}
+                    <a href="?page={{ num }}" class="btn btn-outline-primary">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for num in page.paginator.page_range %}
+                <a href="?page={{ num }}" class="btn btn-outline-primary">{{ num }}</a>
+            {% endfor %}
+        {% endif %}
+
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}" class="btn btn-outline-primary">Next</a>
+            <a href="?page={{ page.paginator.num_pages }}" class="btn btn-outline-primary">Last &raquo;</a>
+        {% endif %}
+    </span>
+</div>

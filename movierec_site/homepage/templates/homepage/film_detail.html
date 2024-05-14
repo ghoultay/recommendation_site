@@ -1,0 +1,27 @@
+{% extends 'homepage/base.html'%}
+{% block title %}{{movie.title}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron bg-dark text-light ">
+        <h1 class="display-4">{{movie.title}}</h1>
+        <!-- <p class="lead">{{ movie.movieId }}</p> -->
+        <form class="rate-form" action="" method="POST" id="{{movie.id}}">
+        {% csrf_token %}
+        {% load my_filters %}
+        {% for full_star in rating.0|times %}
+        <button type="submit" class="fa fa-star fa-2x rate-btn full checked" id="star{{full_star}}"></button>
+        {% endfor %}
+        {% for half_star in rating.1|times %}
+        <button type="submit" class="fa fa-star-half-o fa-2x rate-btn halfed checked" id="star{{half_star|add:rating.0}}"></button>
+        {% endfor %}
+        {% for empty_star in rating.2|times %}
+        <button type="submit" class="fa fa-star-o fa-2x rate-btn empty" id="star{{empty_star|add:rating.1|add:rating.0}}"></button>
+        {% endfor %}
+        <p>{{movie.vote_average}}</p>
+        <div id="confirm-box"><p>‎ </p></div>
+        </form>
+        
+    </div>
+    {{ user.id|json_script:"user_id" }}
+{% endblock %}

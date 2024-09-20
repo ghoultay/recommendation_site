@@ -6,7 +6,7 @@ __pycache__/
 movrecenv
 
 # Ignore csv files
-movierec_site/homepage/dataset/my_movies.csv
+# movierec_site/homepage/dataset/my_movies.csv
 movierec_site/homepage/dataset/my_ratings.csv
 
 # Ignore IDE or editor files
